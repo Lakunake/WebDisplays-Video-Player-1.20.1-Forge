@@ -35,9 +35,9 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 
 ## 🌐 Hosting Tutorials
 
-> ⚠️ All of the command must be done in cmd,
->     You need node.js,
->     Install videos, server.js and index.html and put them all in the same folder anywhere in your pc, preferably right in C:\YourFolder\
+> ⚠️ All of the command must be done in cmd
+>     ,You need node.js,
+>     ,Install videos, server.js and index.html and put them all in the same folder anywhere in your pc, preferably right in C:\YourFolder\
 
 ### 🔌 Option 1: LAN or Public IP (Direct Hosting)
 
