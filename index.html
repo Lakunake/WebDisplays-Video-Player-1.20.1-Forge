@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Synced Video</title>
+  <style>
+    html, body { margin:0; padding:0; background:black; height:100%; overflow:hidden; }
+    video { width:100%; height:100%; background:black; }
+    video::-webkit-media-controls,
+    video::-moz-media-controls { display:none!important; }
+  </style>
+</head>
+<body>
+  <video id="video" autoplay>
+    <source src="/videos/filmeva.mp4" type="video/mp4">
+  </video>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const video = document.getElementById('video');
+    const socket = io();
+
+    const startTime = 1;    // 25:55
+    const pauseZone = 75;      // center ±75px toggles pause/play
+    const edgeZone  = 87;      // left/right 87px zones for skip/rewind
+    let isSyncing  = false;    // debounce flag
+
+    // 1) Start at 25:55
+    video.currentTime = startTime;
+    video.play();
+
+    // 2) Helper to emit an event
+    function sendEvent(type) {
+      if (isSyncing) return;
+      isSyncing = true;
+      socket.emit('video-event', { type, time: video.currentTime });
+      setTimeout(() => isSyncing = false, 200);
+    }
+
+    // 3) Broadcast play/pause/seek
+    video.addEventListener('play',  () => sendEvent('play'));
+    video.addEventListener('pause', () => sendEvent('pause'));
+    video.addEventListener('seeked',() => sendEvent('seek'));
+
+    // 4) Sync incoming events
+    socket.on('video-event', data => {
+      if (Math.abs(video.currentTime - data.time) > 0.5) {
+        video.currentTime = data.time;
+      }
+      if (data.type === 'play')  video.play();
+      if (data.type === 'pause') video.pause();
+      // seek is implicit with currentTime update
+    });
+
+    // 5) Single-click zones:
+    document.addEventListener('click', e => {
+      const w = window.innerWidth;
+      const x = e.clientX;
+      const center = w / 2;
+
+      if (x <= edgeZone) {
+        // Left edge: rewind 5s
+        video.currentTime = Math.max(0, video.currentTime - 5);
+        sendEvent('seek');
+      }
+      else if (x >= w - edgeZone) {
+        // Right edge: skip ahead 5s
+        video.currentTime = Math.min(video.duration, video.currentTime + 5);
+        sendEvent('seek');
+      }
+      else if (x >= center - pauseZone && x <= center + pauseZone) {
+        // Center zone: toggle pause/play
+        if (video.paused) video.play();
+        else              video.pause();
+      }
+      else if (x < center) {
+        // Between left edgeZone and center: volume down
+        video.volume = Math.max(0, video.volume - 0.05);
+      }
+      else {
+        // Between center and right edgeZone: volume up
+        video.volume = Math.min(1, video.volume + 0.05);
+      }
+    });
+  </script>
+</body>
+</html>
