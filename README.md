@@ -1,8 +1,4 @@
 # WebDisplays-Video-Player-1.20.1-Forge
-Lets you have a FULLY SYNCED .mp4 video player specifically designed for the mod WebDisplays for 1.20.1 forge
-
-
-# WebDisplays-Video-Player-1.20.1-Forge
 
 A synchronized HTML5 video player for Minecraft's WebDisplays mod (1.20.1 Forge) using Node.js and Socket.IO. This project allows all players to view the same video in perfect sync—including play, pause, and seek actions—across connected clients.
 
@@ -40,6 +36,8 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 ## 🌐 Hosting Tutorials
 
 > ⚠️ All of the command must be done in cmd
+>     You need node.js
+>     Install videos, server.js and index.html and put them all in the same folder anywhere in your pc, preferably right in C:\YourFolder\
 
 ### 🔌 Option 1: LAN or Public IP (Direct Hosting)
 
