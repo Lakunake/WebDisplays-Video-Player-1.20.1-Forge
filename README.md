@@ -1,8 +1,17 @@
 # WebDisplays-Video-Player
 
-A FULLY synchronized HTML5 video player for Minecraft's WebDisplays mod using Node.js and Socket.IO. This project allows all players to view the same video in perfect sync—including play, pause, and seek actions—across connected clients.
+THIS IS NO MOD, DATAPACK, OR RESOURCE PACK. THIS IS A STANDALONE COMPANION TOOL NODE.JS SERVER
 
-> 🔗 GitHub Repo: [Lakunake/WebDisplays-Video-Player-1.20.1-Forge](https://github.com/Lakunake/WebDisplays-Video-Player)
+A FULLY synchronized HTML5 video player for Minecraft's WebDisplays mod (1.20.1 Forge) using Node.js and Socket.IO. This project allows all players to view the same video in perfect sync—including play, pause, and seek actions—across connected clients.
+
+> 🔗 GitHub Repo: [Lakunake/WebDisplays-Video-Player](https://github.com/Lakunake/WebDisplays-Video-Player)
+
+---
+
+## 🚀 Requirements
+
+* [Node.js](https://nodejs.org/) installed on your machine (v16+ recommended)
+* A `.mp4` video file named `filmeva.mp4` placed in the `/videos/` folder
 
 ---
 
@@ -10,7 +19,7 @@ A FULLY synchronized HTML5 video player for Minecraft's WebDisplays mod using No
 
 * 📺 MP4 video streaming via HTML5 `<video>` tag
 * 🔁 Real-time playback synchronization using Socket.IO
-* ⏯️ Syncs `play`, `pause`, and `seek` events across all connected users
+* ⎯️ Syncs `play`, `pause`, and `seek` events across all connected users
 * 📡 Can be used over LAN, Hamachi, or hosted publicly (Railway etc.)
 * ⚙️ Lightweight Node.js + Express server
 * 🖱️ Custom video control zones (click-based)
@@ -25,8 +34,8 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 | -------------------------------------- | ------------------------ | ------------- |
 | **Left Edge (≤ 87px)**                 | ⏪ Rewind 5 seconds       | ✅ Synced      |
 | **Right Edge (≥ screen width − 87px)** | ⏩ Skip forward 5 seconds | ✅ Synced      |
-| **Center (±75px from center)**         | ⏯️ Toggle Play / Pause   | ✅ Synced      |
-| **Between Left Edge and Center**       | 🔉 Decrease volume (5%)  | ❌ Local only  |
+| **Center (±75px from center)**         | ⎯️ Toggle Play / Pause   | ✅ Synced      |
+| **Between Left Edge and Center**       | 🔈 Decrease volume (5%)  | ❌ Local only  |
 | **Between Center and Right Edge**      | 🔊 Increase volume (5%)  | ❌ Local only  |
 
 > ⚠️ All users will see the same video at the same time except for **volume**, which is controlled individually per client.
@@ -35,13 +44,17 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 
 ## 🌐 Hosting Tutorials
 
-> ⚠️ All of the command must be done in cmd,
->     You need node.js,
->     Install videos, server.js and index.html and put them all in the same folder anywhere in your pc, preferably right in C:\YourFolder\
+> ⚠️ All commands are run from Command Prompt (CMD).
+> Ensure [Node.js](https://nodejs.org/) is installed before proceeding.
+> Place `videos/`, `server.js`, and `index.html` in the same folder, e.g. `C:\YourFolder\`.
 
 ### 🔌 Option 1: LAN or Public IP (Direct Hosting)
 
-1. Run `server.js` on your machine using Node.js.
+1. Run `server.js` by opening CMD in your folder and typing:
+
+   ```bash
+   node server.js
+   ```
 2. Make sure port `3000` is open in your firewall/router.
 3. Get your **public IP** from [https://whatismyipaddress.com](https://whatismyipaddress.com)
 4. Access the video from another device at:
@@ -76,7 +89,7 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 1. Go to [Railway.app](https://railway.app).
 2. Create a new project → Deploy from GitHub.
 3. Connect your repository:
-   [https://github.com/Lakunake/WebDisplays-Video-Player-1.20.1-Forge](https://github.com/Lakunake/WebDisplays-Video-Player-1.20.1-Forge)
+   [https://github.com/Lakunake/WebDisplays-Video-Player](https://github.com/Lakunake/WebDisplays-Video-Player)
 4. Set `start` script in `package.json` to:
 
    ```json
@@ -98,12 +111,15 @@ index.html              # The frontend video player
 
 ## 📜 License
 
+**Short name**: `CC BY-NC-SA 4.0`
+**URL**: [https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 This project is licensed under **CC BY-NC-SA 4.0**:
 
 * ✅ Free to use and modify
 * 🔗 Must credit the original creator (**Lakunake**)
-* 🚫 Commercial use is **not allowed**
-* 🔁 Must share any changes **if distributed or hosted publicly**
+* ❌ Commercial use is **not allowed**
+* ♻️ Must share any changes **if distributed or hosted publicly**
 
 See [LICENSE](LICENSE) for more details.
 
@@ -113,24 +129,3 @@ See [LICENSE](LICENSE) for more details.
 
 Created by **Lakunake**
 Built with ❤️ using Node.js, Express, and Socket.IO
-
----
-
-# LICENSE
-
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
-
-You are free to:
-
-* **Share** — copy and redistribute the material in any medium or format
-* **Adapt** — remix, transform, and build upon the material
-
-Under the following terms:
-
-* **Attribution** — You must give appropriate credit to **Lakunake**, provide a link to the license, and indicate if changes were made.
-* **NonCommercial** — You may not use the material for commercial purposes.
-* **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
-
-You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
-
-For full license text, visit: [https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by-nc-sa/4.0/)
