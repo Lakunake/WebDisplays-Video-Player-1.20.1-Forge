@@ -2,7 +2,7 @@
 
 A FULLY synchronized HTML5 video player for Minecraft's WebDisplays mod (1.20.1 Forge) using Node.js and Socket.IO. This project allows all players to view the same video in perfect sync—including play, pause, and seek actions—across connected clients.
 
-> 🔗 GitHub Repo: [Lakunake/WebDisplays-Video-Player-1.20.1-Forge](https://github.com/Lakunake/WebDisplays-Video-Player-1.20.1-Forge)
+> 🔗 GitHub Repo: [Lakunake/WebDisplays-Video-Player-1.20.1-Forge](https://github.com/Lakunake/WebDisplays-Video-Player)
 
 ---
 
