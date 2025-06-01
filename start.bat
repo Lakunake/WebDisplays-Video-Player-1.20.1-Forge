@@ -1,9 +1,21 @@
-@echo off
-REM Change to your server folder
-cd /d C:\YourFileTrajectory
+# WebDisplays Video Player Configuration
 
-REM Start the server
-npm install
-node server.js
+# This file controls how the launcher script behaves.
+# Leave a setting blank or commented out to use automatic detection.
 
-pause
+# Example: C:\Users\YourName\Documents\WebDisplays-Video-Player
+# If empty, the batch script auto-detects its own folder
+server_path=
+
+# Set a custom port (optional). Defaults to 3000 if blank, 3000 is the recommended so best if left blank
+# Example:
+port=3000
+
+# Whether to auto-install missing node modules (true/false)
+auto_install=true
+
+# Whether to check if Node.js is installed (true/false)
+check_node=true
+
+# Whether to open the site in the default browser after launching (true/false)
+open_browser=false
