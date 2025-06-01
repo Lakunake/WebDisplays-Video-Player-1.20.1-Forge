@@ -1,46 +1,72 @@
+// server.js
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Serve static and video files
+// Serve static files and /videos folder
 app.use(express.static(__dirname));
 app.use('/videos', express.static(path.join(__dirname, 'videos')));
 
-// Store the current video state globally (if needed)
+// Global video state
 let currentVideoState = {
-  type: 'seek', // Default event type
-  time: 1555    // Default video start time (25:55)
+  type: 'seek',
+  time: 1555  // default start time (25:55)
 };
 
-// When a client connects, send them the current state
-io.on('connection', (socket) => {
-  console.log('A user connected');
+// User tracking (no IPs, no coloring)
+let userCounter = 0;
+const users = {};
 
-  // Send the current video state to the new client
+function generateUserID() {
+  return String(++userCounter).padStart(3, '0');
+}
+
+io.on('connection', socket => {
+  const userID = generateUserID();
+  users[userID] = { id: userID };
+
+  console.log(`User (${userID}) connected`);
+
+  // Send current video state and assigned ID to client
   socket.emit('video-event', currentVideoState);
+  socket.emit('user-assigned', { id: userID });
 
-  // Listen for video events and broadcast to other clients
-  socket.on('video-event', (data) => {
-    console.log(`Video event received: ${data.type} at ${data.time}`);
-    
-    // Update the global state
+  // Relay any video-event to everyone else
+  socket.on('video-event', data => {
+    console.log(`Video event from ${userID}: ${data.type} @ ${data.time}`);
     currentVideoState = data;
-
-    // Broadcast the event to all other clients (excluding the sender)
     socket.broadcast.emit('video-event', data);
   });
 
-  // When a client disconnects, log it
   socket.on('disconnect', () => {
-    console.log('A user disconnected');
+    console.log(`User (${userID}) disconnected`);
+    delete users[userID];
   });
 });
 
-// Server listening on port 3000
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+// Read port from config.txt if present
+let PORT = 3000;
+try {
+  const raw = fs.readFileSync('config.txt', 'utf-8');
+  const config = Object.fromEntries(
+    raw
+      .split(/\r?\n/)
+      .filter(line => line && !line.startsWith('#'))
+      .map(line => line.split('='))
+  );
+  if (config.port) {
+    PORT = parseInt(config.port);
+  }
+} catch (e) {
+  console.log('No config.txt found or malformed. Using default port 3000.');
+}
+
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
