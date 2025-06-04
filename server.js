@@ -15,7 +15,7 @@ app.use('/videos', express.static(path.join(__dirname, 'videos')));
 // Global video state
 let currentVideoState = {
   type: 'seek',
-  time: 1555  // start at 25:55
+  time: 1  // start at 25:55
 };
 
 let userCounter = 0;
