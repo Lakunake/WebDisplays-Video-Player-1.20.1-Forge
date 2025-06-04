@@ -90,13 +90,14 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 2. Create a new project → Deploy from GitHub.
 3. Connect your repository:
    [https://github.com/Lakunake/WebDisplays-Video-Player](https://github.com/Lakunake/WebDisplays-Video-Player)
-4. Set these scripts scripts to:
+4. Choose the "RENDER" branch
+5. Set these scripts scripts to:
 
    ```json
    "start": "node server.js"
    "build": "npm install"
    ```
-5. Deploy and access your video player via the Render-provided URL.
+6. Deploy and access your video player via the Render-provided URL.
 
 ---
 
