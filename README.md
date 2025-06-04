@@ -84,18 +84,19 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 
 ---
 
-### 🚂 Option 3: Hosting on Railway (Free Cloud Hosting)
+### 🚂 Option 3: Hosting on Render (Free Cloud Hosting)
 
-1. Go to [Railway.app](https://railway.app).
+1. Go to [Render](https://render.com).
 2. Create a new project → Deploy from GitHub.
 3. Connect your repository:
    [https://github.com/Lakunake/WebDisplays-Video-Player](https://github.com/Lakunake/WebDisplays-Video-Player)
-4. Set `start` script in `package.json` to:
+4. Set these scripts scripts to:
 
    ```json
    "start": "node server.js"
+   "build": "npm install"
    ```
-5. Deploy and access your video player via the Railway-provided URL.
+5. Deploy and access your video player via the Render-provided URL.
 
 ---
 
