@@ -2,7 +2,7 @@
 
 THIS IS NO MOD, DATAPACK, OR RESOURCE PACK. THIS IS A STANDALONE COMPANION TOOL NODE.JS SERVER
 
-A FULLY synchronized HTML5 video player for Minecraft's WebDisplays mod (1.20.1 Forge) using Node.js and Socket.IO. This project allows all players to view the same video in perfect sync—including play, pause, and seek actions—across connected clients.
+A FULLY synchronized HTML5 video player for Minecraft's WebDisplays mod using Node.js and Socket.IO. This project allows all players to view the same video in perfect sync—including play, pause, and seek actions—across connected clients.
 
 > 🔗 GitHub Repo: [Lakunake/WebDisplays-Video-Player](https://github.com/Lakunake/WebDisplays-Video-Player)
 
@@ -105,6 +105,9 @@ Click-based controls have been implemented for easy, mouse-only interaction:
 /videos/filmeva.mp4     # Your synced video file
 server.js               # Node.js backend for socket and file serving
 index.html              # The frontend video player
+package.json            # This tells Node.js which dependencies to install and how to run the server
+start.bat               # The start file, gives you the link of the server
+config.txt              # Optional config file to customize server port, install behavior, and launch settings
 ```
 
 ---
